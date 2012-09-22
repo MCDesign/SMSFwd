@@ -85,6 +85,9 @@ public class SMSFwdSQLiteHelper extends SQLiteOpenHelper {
 				"Upgrading database from version " + oldVersion + " to "
 						+ newVersion + ", which will destroy all old data");
 		db.execSQL("DROP TABLE IF EXISTS" + TB_FILTRE);
+		db.execSQL("DROP TABLE IF EXISTS" + TB_LOGS);
+		db.execSQL("DROP TABLE IF EXISTS" + TB_SETTINGS);
+		
 		onCreate(db);
 	}
 

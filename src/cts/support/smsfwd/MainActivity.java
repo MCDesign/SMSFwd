@@ -135,7 +135,7 @@ public class MainActivity extends Activity {
 	        // Build adapter with contact entries
 		   DataSource ds = new DataSource(this);
 		   ds.open();
-	        Cursor cursor = ds.getAllCursor();
+	        Cursor cursor = ds.getAllCursorFiltre();
 	        String[] fields = new String[] {
 	                "_id","Name","Phone"
 	        };

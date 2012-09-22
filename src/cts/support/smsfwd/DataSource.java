@@ -16,11 +16,22 @@ public class DataSource {
 	
 	private SQLiteDatabase database;
 	private SMSFwdSQLiteHelper dbHelper;
-	private String[] allColumns = { SMSFwdSQLiteHelper.FD_FILTRU_ID,
+	private String[] allColumnsFiltre = { SMSFwdSQLiteHelper.FD_FILTRU_ID,
 									SMSFwdSQLiteHelper.FD_FILTRU_TEXT,
 									SMSFwdSQLiteHelper.FD_FILTRU_PHONE,
 									SMSFwdSQLiteHelper.FD_FILTRU_NAME};
-		 
+	
+	private String[] allColumnsSettings = {SMSFwdSQLiteHelper.FD_SETTINGS_ID,
+										SMSFwdSQLiteHelper.FD_SETTINGS_ATTR_NAME,
+										SMSFwdSQLiteHelper.FD_SETTINGS_ATTR_VAL	
+	};
+	
+	private String[] allColumnsLogs = {SMSFwdSQLiteHelper.FD_LOGS_ID,
+									SMSFwdSQLiteHelper.FD_LOGS_DATE,
+									SMSFwdSQLiteHelper.FD_LOGS_TYPE,
+									SMSFwdSQLiteHelper.FD_LOGS_SRC,
+									SMSFwdSQLiteHelper.FD_LOGS_TEXT
+	};
 	
 	public  DataSource(Context context) {
 		Log.w("a1","DataSource crator");
@@ -85,7 +96,7 @@ public class DataSource {
 		Filtre f = null;
 		
 		Cursor cursor = database.query(SMSFwdSQLiteHelper.TB_FILTRE,
-				allColumns, SMSFwdSQLiteHelper.FD_FILTRU_ID + "="+sId, null, null, null, null);
+				allColumnsFiltre, SMSFwdSQLiteHelper.FD_FILTRU_ID + "="+sId, null, null, null, null);
 		cursor.moveToFirst();
 		f = cursorToFiltru(cursor);
 		return f;
@@ -94,7 +105,7 @@ public class DataSource {
 	{
 		List <Filtre>  filtre = new ArrayList<Filtre>();
 		Cursor cursor = database.query(SMSFwdSQLiteHelper.TB_FILTRE,
-				allColumns, null, null, null, null, null);
+				allColumnsFiltre, null, null, null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			Filtre filtru = cursorToFiltru(cursor);
@@ -107,17 +118,27 @@ public class DataSource {
 		return filtre;
 	}
 	
-	public Cursor getAllCursor()
+	public Cursor getAllCursorFiltre()
 	{
 		Cursor cursor = database.query(SMSFwdSQLiteHelper.TB_FILTRE,
-				allColumns, null, null, null, null, null);
+				allColumnsFiltre, null, null, null, null, null);
 		cursor.moveToFirst();
 		return cursor;
 	}
+	
+	public String getAttributeValue(String attrName)
+	{
+		String ret="";
+		Cursor cursor = database.query(SMSFwdSQLiteHelper.TB_SETTINGS,
+				allColumnsFiltre, null, null, null, null, null);
+		cursor.moveToFirst();
+		return ret;
+	}
+	
 	public String getPhoneForThisText(String mesaj)
 	{
 		Cursor cursor = database.query(SMSFwdSQLiteHelper.TB_FILTRE,
-				allColumns, null, null, null, null, null);
+				allColumnsFiltre, null, null, null, null, null);
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			Filtre filtru = cursorToFiltru(cursor);
