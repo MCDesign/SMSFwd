@@ -152,17 +152,27 @@ public class MainActivity extends Activity {
 			Log.d("dbg", "onMenuItemClick MenuItem="+item.getItemId());
 			Toast.makeText(getApplicationContext(), "asdasd", Toast.LENGTH_SHORT).show();
 			switch (item.getItemId()) {
-			case R.id.menu_add_filter:
-			{
-				Bundle bundle2 = new Bundle();
-			
-				bundle2.putString("telefon","");
-				Intent i = new Intent(getApplicationContext(), AddNewFilter.class);
-				i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				i.putExtras(bundle2);
-				getApplicationContext().startActivity(i);
-			
-			}
+				case R.id.menu_add_filter:
+				{
+					Bundle bundle2 = new Bundle();
+				
+					bundle2.putString("telefon","");
+					Intent i = new Intent(getApplicationContext(), AddNewFilter.class);
+					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					i.putExtras(bundle2);
+					getApplicationContext().startActivity(i);
+					break;
+				}
+				
+				case R.id.menu_settings:
+				{
+					Intent i = new Intent(getApplicationContext(), SMSFwdSetting.class);
+					i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					getApplicationContext().startActivity(i);
+					
+					
+					break;
+				}
 			}
 			
 			return false;
