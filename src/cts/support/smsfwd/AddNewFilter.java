@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class AddNewFilter extends Activity {
 
-	private String sId;
+	private String sId="";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

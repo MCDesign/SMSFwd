@@ -4,7 +4,7 @@
     android:layout_height="match_parent" >
 
     <CheckBox
-        android:id="@+id/checkBox1"
+        android:id="@+id/cb_settings_EnableForfarding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -13,16 +13,16 @@
         android:text="Enable forwarding" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/cb_settings_LogAllSMS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/checkBox1"
+        android:layout_below="@+id/cb_settings_EnableForfarding"
         android:layout_marginTop="20dp"
         android:text="Log all incomming SMS" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnSettingsApply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -30,11 +30,11 @@
         android:text="Apply" />
 
     <CheckBox
-        android:id="@+id/checkBox3"
+        android:id="@+id/cb_settings_EnableSound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/checkBox2"
+        android:layout_below="@+id/cb_settings_LogAllSMS"
         android:layout_marginTop="24dp"
         android:text="Enable Sound Notification" />
 

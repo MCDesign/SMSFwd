@@ -130,9 +130,30 @@ public class DataSource {
 	{
 		String ret="";
 		Cursor cursor = database.query(SMSFwdSQLiteHelper.TB_SETTINGS,
-				allColumnsFiltre, null, null, null, null, null);
-		cursor.moveToFirst();
+				allColumnsSettings, SMSFwdSQLiteHelper.FD_SETTINGS_ATTR_NAME + "='"+attrName+"'", null, null, null, null);
+		if (cursor.getCount() > 0)
+		{
+			cursor.moveToFirst();
+			ret = cursor.getString(2);
+		}
+		cursor.close();
+		Log.w("a1", "Get Settings Attribute "+attrName+" = "+ret);
 		return ret;
+	}
+	
+	
+	public void setAttributeValue(String attrName, String attrValue)
+	{
+		ContentValues values = new ContentValues();
+		values.put(SMSFwdSQLiteHelper.FD_SETTINGS_ATTR_NAME, attrName);
+		values.put(SMSFwdSQLiteHelper.FD_SETTINGS_ATTR_VAL, attrValue);
+		
+		database.delete(SMSFwdSQLiteHelper.TB_SETTINGS, SMSFwdSQLiteHelper.FD_SETTINGS_ATTR_NAME + " ='" + attrName + "'", null);
+		long insertId = database.insert(SMSFwdSQLiteHelper.TB_SETTINGS, SMSFwdSQLiteHelper.FD_SETTINGS_ID + ", "+
+				SMSFwdSQLiteHelper.FD_SETTINGS_ATTR_NAME + ", " + SMSFwdSQLiteHelper.FD_SETTINGS_ATTR_VAL ,
+				values);
+		Log.w("a1", "Created Settings Attribute "+attrName+" = "+attrValue+" id="+insertId);
+		return;
 	}
 	
 	public String getPhoneForThisText(String mesaj)

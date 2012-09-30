@@ -35,7 +35,7 @@ public class SMSFwdSQLiteHelper extends SQLiteOpenHelper {
 	
 	
 	private static final String DATABASE_NAME_FILTRE = "SMSFwdFiltre.db";
-	private static final int DATABASE_VERSION_FILTRE = 1;
+	private static final int DATABASE_VERSION_FILTRE = 2;
 
 	// Database creation sql statement
 	private static final String DATABASE_CREATE_FILTRE = "create table "
